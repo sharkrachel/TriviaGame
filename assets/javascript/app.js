@@ -6,6 +6,13 @@ window.onload = function() {
 $(".start").on("click", start)
 }
 
+var time = 25;
+$(".timer").text(time);
+
+function reset() {
+    time = 25;
+    $(".timer").text(time);
+}
 
 // At the same time, display one question
 // At the same time, display multiple choice answers
