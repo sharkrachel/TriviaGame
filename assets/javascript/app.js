@@ -2,6 +2,11 @@
 
 // The game initially starts by pressing the Start Button
 // Start a 30 second countdown clock - perhaps the getTime(). https://www.w3schools.com/howto/howto_js_countdown.asp
+window.onload = function() {
+$(".start").on("click", start)
+}
+
+
 // At the same time, display one question
 // At the same time, display multiple choice answers
 // If correct answer is chosen, show a message saying "correct" and an image or gif
