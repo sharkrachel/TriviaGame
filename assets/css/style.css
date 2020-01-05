@@ -1,24 +1,38 @@
 body {
-background-image: url("../images/background.jpg")
+background-color: #5F5C73;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .logo {
-   color: blue;
+   color: #8BBBD9;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
    font-size: 48px;
-   margin: auto;
-    width: 50%;
+   font-weight: bold;
    padding: 10px;
+   text-align: center;
   
 }
 
 .container {
-    background-color: yellow;
+    background-color: #A67F68;
     opacity: .8;
     height: auto;
     width: 540px;
     margin: 0;
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.start {
+    background-color:#8BBBD9;;
+    font-size: 48px;
+    font-weight: bold;
+    color:#5F5C73;
+    opacity: 1;
+    margin-top: 40px;
+    position: relative;
     top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
