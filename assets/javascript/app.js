@@ -21,6 +21,7 @@ var currentQuestion = 0;
 var right = 0;
 var wrong = 0;
 
+
 var questions = [
     {
         questionText: "What is a function inside of an object called?",
@@ -44,22 +45,32 @@ var questions = [
     }
 ]
 
+
+// This function starts the game by hiding the start button, setting the timer to 25 sections, starting the timer and displaying the current question
+
 function startGame() {
     $(".start").click(function () {
-        $(".timer").append(time);
         $(".start").hide();
         resetTimer();
         displayQuestion(currentQuestion);
     });
 
 }
+// this function resets the timer by setting the variable back to original value, clearing the interval and then setting the interval to change every 1 second.
 
 function resetTimer() {
-    time = 10;
     window.clearInterval(intervalId);
+    time = 10;
+    $(".timer").append(time);
     intervalId = window.setInterval(onTimeChange, 1000);
 }
 
+function stopTimer() {
+    window.clearInterval(intervalId);
+ 
+}
+
+// this function tells the timer to reduce time variable by 1, as long as the timer hasn't reached 0. If it has, then the outOfTime function runs
 function onTimeChange() {
     if (time >= 0) {
         updateTimeDisplay(time - 1);
@@ -70,27 +81,30 @@ function onTimeChange() {
 
 }
 
+// this function pushes the new time variable to the html every second
 function updateTimeDisplay(newTime) {
     $(".timer").text(time);
     time = newTime;
 }
 
+// this function hides the question and answers when the time variable reaches 0. It notifies the user that time is up. It then resets the timer and displays the next question
 function outOfTime() {
-    $(".questions").hide();
-    $(".answers").hide();
-    $(".times-up").text("Out of time");
+    clearContainer();
+    $(".image").append("<img src='assets/images/time-up.png'/>").show();
     resetTimer();
-    nextQuestion();
-    window.setTimeout(displayQuestion, 3000, currentQuestion);
-    // displayQuestion(currentQuestion);
+    setTimeout(nextQuestion, 5000);
+
 }
 
+
+// this function displays the question. it creates a temp variable for the question 
 function displayQuestion(id) {
     var question = questions[id];
     var text = question.questionText;
 
     $(".questions").append("<p>" + text + "</p>");
 
+    // this for loop is creating an html button for each answer in the answers array
     var answers = question.answers;
     for (var i = 0; i < answers.length; i++) {
         $(".answers").append("<button value=" + i + ">" + answers[i] + "</button>");
@@ -102,27 +116,43 @@ function displayQuestion(id) {
 function nextQuestion() {
     if (currentQuestion < questions.length - 1) {
         currentQuestion++
+        $(".questions").show();
+        $(".answers").show();
+        resetTimer();
+        $(".timer").show();
+        $(".image").hide();
+        displayQuestion(currentQuestion);
     }
+
 }
 
+//
 function handleAnswerClick(event) {
     userGuess = event.target.value;
-    $(".questions").hide();
-    $(".answers").hide();
-
-    if (userGuess === questions.correctAnswer) {
-        $(".correct").text("You are correct!");
-        $("image").append("<img src='assets/images/correct.png'>");
+    correctGuess = questions[currentQuestion].correctAnswer;
+    clearContainer();
+    stopTimer();
+    console.log(userGuess);
+    console.log(correctGuess);
+    if (userGuess == correctGuess) {
+        $(".image").append("<img src='assets/images/correct.png'/>").show();
         right++;
     }
 
-    else (userGuess != questions.correctAnswer) {
-        $(".incorrect").text("You are incorrect");
-        $("image").append("<img src='assets/images/incorrect.png'>");
+    else  {
+        $(".image").append("<img src='assets/images/incorrect.png'/>").show();
         wrong++;
     }
+
+    setTimeout(nextQuestion, 5000);
 }
 
+function clearContainer () {
+    $(".questions").hide().empty();
+    $(".answers").hide().empty();
+    $(".timer").hide().empty();
+    $(".image").hide().empty();
+}
 
 
 startGame();
