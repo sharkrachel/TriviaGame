@@ -1,10 +1,12 @@
 body {
-background-color: #5F5C73;
+background-color: white;
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+font-size: 32px;
+color: black;
 }
 
 .logo {
-   color: #8BBBD9;
+   color: #1BBF15;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
    font-size: 48px;
    font-weight: bold;
@@ -14,9 +16,9 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .container {
-    background-color: #A67F68;
+    background-color: #F2B807;
     opacity: .8;
-    height: auto;
+    height: 400px;
     width: 540px;
     margin: 0;
     position: absolute;
@@ -26,14 +28,17 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .start {
-    background-color:#8BBBD9;;
+    background-color:#F2360C;
     font-size: 48px;
     font-weight: bold;
-    color:#5F5C73;
+    color:#1BBF15;
     opacity: 1;
     margin-top: 40px;
     position: relative;
     top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.timer {
+    text-align: center;
 }
