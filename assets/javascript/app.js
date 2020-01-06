@@ -15,7 +15,7 @@
 
 //setInterval()
 
-var time = 10;
+var time = 100;
 var intervalId;
 var currentQuestion = 0;
 var right = 0;
@@ -60,14 +60,14 @@ function startGame() {
 
 function resetTimer() {
     window.clearInterval(intervalId);
-    time = 10;
+    time = 100;
     $(".timer").append(time);
     intervalId = window.setInterval(onTimeChange, 1000);
 }
 
 function stopTimer() {
     window.clearInterval(intervalId);
- 
+
 }
 
 // this function tells the timer to reduce time variable by 1, as long as the timer hasn't reached 0. If it has, then the outOfTime function runs
@@ -102,12 +102,30 @@ function displayQuestion(id) {
     var question = questions[id];
     var text = question.questionText;
 
+
     $(".questions").append("<p>" + text + "</p>");
 
+    var row;
+    var column;
+    var button;
     // this for loop is creating an html button for each answer in the answers array
     var answers = question.answers;
     for (var i = 0; i < answers.length; i++) {
-        $(".answers").append("<button value=" + i + ">" + answers[i] + "</button>");
+
+        if (i % 2 === 0) {
+            row = $("<div class='row'>")
+        }
+
+        column = $("<div class='col-sm-6'>")
+        button = "<button  class='btn btn-primary'  value=" + i + ">" + answers[i] + "</button>"
+        column.append(button)
+        row.append(column)
+
+        if (i % 2 === 1) {
+
+            $(".answers").append(row);
+        }
+
     }
     $(".answers button").click(handleAnswerClick);
 }
@@ -139,7 +157,7 @@ function handleAnswerClick(event) {
         right++;
     }
 
-    else  {
+    else {
         $(".image").append("<img src='assets/images/incorrect.png'/>").show();
         wrong++;
     }
@@ -147,7 +165,7 @@ function handleAnswerClick(event) {
     setTimeout(nextQuestion, 5000);
 }
 
-function clearContainer () {
+function clearContainer() {
     $(".questions").hide().empty();
     $(".answers").hide().empty();
     $(".timer").hide().empty();

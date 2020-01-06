@@ -1,14 +1,34 @@
+/* 
+Add a background image
+Title/Header
+Something to show the user needs to press the start button (an emphasis on this button)
+
+
+
+
+*/
+
+
+
+
+
+
+
+
+
 body {
-background-color: white;
+background-image: url("../images/AdobeStock_141530675.jpeg");
+background-size: cover;
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 font-size: 32px;
-color: black;
+color: #3B3840;
 }
 
 .logo {
-   color: #1BBF15;
+    color: #734D54;
+    text-shadow: 2px 2px 4px #000000;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-   font-size: 48px;
+   font-size: 58px;
    font-weight: bold;
    padding: 10px;
    text-align: center;
@@ -16,8 +36,7 @@ color: black;
 }
 
 .container {
-    background-color: #F2B807;
-    opacity: .8;
+    background-color: #F0F0F2;
     height: 400px;
     width: 540px;
     margin: 0;
@@ -28,11 +47,10 @@ color: black;
 }
 
 .start {
-    background-color:#F2360C;
+    background-color: #734D54;
     font-size: 48px;
     font-weight: bold;
-    color:#1BBF15;
-    opacity: 1;
+    color: #F0F0F2;
     margin-top: 40px;
     position: relative;
     top: 80%;
@@ -41,4 +59,15 @@ color: black;
 }
 .timer {
     text-align: center;
+}
+
+button {
+    width: 100%;
+    height: auto;
+    color: #3B3840;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #734D54 !important;
+    border: none;
 }
