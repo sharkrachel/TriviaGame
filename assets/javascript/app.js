@@ -15,13 +15,14 @@
 
 //setInterval()
 
-var time = 100;
+// global variables
+var time = 30;
 var intervalId;
 var currentQuestion = 0;
 var right = 0;
 var wrong = 0;
 
-
+// 
 var questions = [
     {
         questionText: "What is a function inside of an object called?",
@@ -60,7 +61,7 @@ function startGame() {
 
 function resetTimer() {
     window.clearInterval(intervalId);
-    time = 100;
+    time = 30;
     $(".timer").append(time);
     intervalId = window.setInterval(onTimeChange, 1000);
 }
@@ -142,6 +143,10 @@ function nextQuestion() {
         displayQuestion(currentQuestion);
     }
 
+    else {
+        gameOver();
+    }
+
 }
 
 //
@@ -150,8 +155,7 @@ function handleAnswerClick(event) {
     correctGuess = questions[currentQuestion].correctAnswer;
     clearContainer();
     stopTimer();
-    console.log(userGuess);
-    console.log(correctGuess);
+
     if (userGuess == correctGuess) {
         $(".image").append("<img src='assets/images/correct.png'/>").show();
         right++;
@@ -162,7 +166,7 @@ function handleAnswerClick(event) {
         wrong++;
     }
 
-    setTimeout(nextQuestion, 5000);
+    setTimeout(nextQuestion, 1000);
 }
 
 function clearContainer() {
@@ -170,7 +174,28 @@ function clearContainer() {
     $(".answers").hide().empty();
     $(".timer").hide().empty();
     $(".image").hide().empty();
+
 }
+
+function gameOver() {
+    clearContainer();
+    $(".correct").html("Total Correct Guesses:" + right);
+    $(".incorrect").html("Total Incorrect Guesses:" + wrong);
+
+    setTimeout(reStart, 5000);
+}
+
+function reStart() {
+    $(".correct").hide().empty();
+    $(".incorrect").hide().empty();
+    $(".start").show();
+    var currentQuestion = 0;
+    var right = 0;
+    var wrong = 0;
+    startGame();
+    
+
+    }
 
 
 startGame();
