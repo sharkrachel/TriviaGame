@@ -40,7 +40,7 @@ var questions = [
         correctAnswer: 2
     },
     {
-        questionText: "JavaScript and Java are the same thing?",
+        questionText: "JavaScript and Java are the same thing.",
         answers: ["True", "Fasle"],
         correctAnswer: 1
     }
