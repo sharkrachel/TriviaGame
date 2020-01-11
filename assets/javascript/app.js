@@ -83,7 +83,8 @@ function onTimeChange() {
     if (time >= 0) {
         updateTimeDisplay(time - 1);
     }
-    else {
+    else {    
+        wrong++;
         outOfTime();
     }
 
@@ -97,6 +98,7 @@ function updateTimeDisplay(newTime) {
 
 // this function hides the question and answers when the time variable reaches 0. It notifies the user that time is up. It then resets the timer and displays the next question
 function outOfTime() {
+
     clearContainer();
     $(".image").append("<img src='assets/images/time-up.png'/>").show();
     resetTimer();
