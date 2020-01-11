@@ -1,23 +1,5 @@
-/* 
-Add a background image
-Title/Header
-Something to show the user needs to press the start button (an emphasis on this button)
-
-
-
-
-*/
-
-
-
-
-
-
-
-
-
 body {
-background-image: url("../images/AdobeStock_141530675.jpeg");
+background-image: url("../images/AdobeStock_141530675.jpg");
 background-size: cover;
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 font-size: 32px;
@@ -28,30 +10,30 @@ color: #3B3840;
     color: #734D54;
     text-shadow: 2px 2px 4px #000000;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-   font-size: 58px;
-   font-weight: bold;
-   padding: 10px;
-   text-align: center;
-  
+    font-size: 72px;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
 }
 
 .container {
-    background-color: #F0F0F2;
-    height: 400px;
+    /* background-color: #F0F0F2; */
+    height: 520px;
     width: 540px;
     margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
-.start {
+.start, .restart {
     background-color: #734D54;
     font-size: 48px;
     font-weight: bold;
     color: #F0F0F2;
-    margin-top: 40px;
+    margin-top: 40%;
     position: relative;
     top: 80%;
     left: 50%;
@@ -59,6 +41,9 @@ color: #3B3840;
 }
 .timer {
     text-align: center;
+    font-size: 40px;
+    font-weight: 900px;
+    color: #734D54;
 }
 
 button {
@@ -67,7 +52,33 @@ button {
     color: #3B3840;
 }
 
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-    background-color: #734D54 !important;
-    border: none;
+button {
+    background-color: #734D54; 
+    color: white;
+    margin-bottom: 8px;
+}
+
+.image {
+    width: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.correct {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 900px;
+}
+
+.incorrect {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 900px;
 }

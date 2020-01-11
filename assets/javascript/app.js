@@ -15,14 +15,14 @@
 
 //setInterval()
 
-// global variables
-var time = 30;
+var time = 15;
 var intervalId;
 var currentQuestion = 0;
 var right = 0;
 var wrong = 0;
 
-// 
+
+
 var questions = [
     {
         questionText: "What is a function inside of an object called?",
@@ -46,6 +46,12 @@ var questions = [
     }
 ]
 
+$(".restart").hide();
+
+//added restart function outside of function to prevent duplicate questions
+$(".restart").click(function () {
+    newGame();
+});
 
 // This function starts the game by hiding the start button, setting the timer to 25 sections, starting the timer and displaying the current question
 
@@ -54,6 +60,7 @@ function startGame() {
         $(".start").hide();
         resetTimer();
         displayQuestion(currentQuestion);
+
     });
 
 }
@@ -61,14 +68,14 @@ function startGame() {
 
 function resetTimer() {
     window.clearInterval(intervalId);
-    time = 30;
+    time = 15;
     $(".timer").append(time);
     intervalId = window.setInterval(onTimeChange, 1000);
 }
 
 function stopTimer() {
     window.clearInterval(intervalId);
-
+ 
 }
 
 // this function tells the timer to reduce time variable by 1, as long as the timer hasn't reached 0. If it has, then the outOfTime function runs
@@ -93,7 +100,7 @@ function outOfTime() {
     clearContainer();
     $(".image").append("<img src='assets/images/time-up.png'/>").show();
     resetTimer();
-    setTimeout(nextQuestion, 5000);
+    setTimeout(nextQuestion, 3000);
 
 }
 
@@ -103,35 +110,17 @@ function displayQuestion(id) {
     var question = questions[id];
     var text = question.questionText;
 
-
     $(".questions").append("<p>" + text + "</p>");
 
-    var row;
-    var column;
-    var button;
     // this for loop is creating an html button for each answer in the answers array
     var answers = question.answers;
     for (var i = 0; i < answers.length; i++) {
-
-        if (i % 2 === 0) {
-            row = $("<div class='row'>")
-        }
-
-        column = $("<div class='col-sm-6'>")
-        button = "<button  class='btn btn-primary'  value=" + i + ">" + answers[i] + "</button>"
-        column.append(button)
-        row.append(column)
-
-        if (i % 2 === 1) {
-
-            $(".answers").append(row);
-        }
-
+        $(".answers").append("<button value=" + i + ">" + answers[i] + "</button>");
     }
     $(".answers button").click(handleAnswerClick);
 }
 
-
+// this function is displaying the next question. If all questions have been displayed, it will then run the gameOver function.
 function nextQuestion() {
     if (currentQuestion < questions.length - 1) {
         currentQuestion++
@@ -149,54 +138,67 @@ function nextQuestion() {
 
 }
 
-//
+//the fuction looks for a user guess. If correct, it displays the correct image. If incorrect, it displays the incorrect image. The images display for 5000 miliseconds
 function handleAnswerClick(event) {
     userGuess = event.target.value;
     correctGuess = questions[currentQuestion].correctAnswer;
     clearContainer();
     stopTimer();
-
     if (userGuess == correctGuess) {
         $(".image").append("<img src='assets/images/correct.png'/>").show();
         right++;
     }
 
-    else {
+    else  {
         $(".image").append("<img src='assets/images/incorrect.png'/>").show();
         wrong++;
     }
 
-    setTimeout(nextQuestion, 1000);
+    setTimeout(nextQuestion, 3000);
 }
 
-function clearContainer() {
+//this function clears the container
+function clearContainer () {
     $(".questions").hide().empty();
     $(".answers").hide().empty();
     $(".timer").hide().empty();
     $(".image").hide().empty();
-
 }
 
+//this function displays the total score and resets the variables. This displays for 5,000 miliseconds.
 function gameOver() {
     clearContainer();
-    $(".correct").html("Total Correct Guesses:" + right);
-    $(".incorrect").html("Total Incorrect Guesses:" + wrong);
+    $(".correct").html("Total Correct:" + right);
+    $(".incorrect").html("Total Incorrect:" + wrong);
+    $(".correct").show();
+    $(".incorrect").show();
+    currentQuestion = 0;
+    time = 15;
+    right = 0;
+    wrong = 0;
 
-    setTimeout(reStart, 5000);
+
+    setTimeout(restart, 5000);
 }
+// this function hides the total score and shows the restart button.
+function restart() {
+    $(".correct").hide();
+    $(".incorrect").hide();
+    $(".restart").show();
 
-function reStart() {
-    $(".correct").hide().empty();
-    $(".incorrect").hide().empty();
-    $(".start").show();
-    var currentQuestion = 0;
-    var right = 0;
-    var wrong = 0;
-    startGame();
-    
+}
+// this function starts the new game.
+function newGame() {
+     {
+        $(".restart").hide();
+        displayQuestion(currentQuestion);
+        $(".questions").show();
+        $(".answers").show();
+        resetTimer()
+        $(".timer").show();
 
-    }
-
+    };
+}
 
 startGame();
 
@@ -212,4 +214,3 @@ startGame();
 // If "Start Over" button is clicked, a new game starts 
 // At no point should a user refresh the page
 // Thats all, easy, right?
-
